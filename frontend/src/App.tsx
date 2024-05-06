@@ -7,6 +7,7 @@ import { Tasks } from './pages/Tasks';
 import { AuthGuestProvider, AuthPrivateProvider } from './features/auth';
 import { ApolloProvider } from '@apollo/client';
 import { client } from './libs';
+import { AppLayout } from './components/layouts';
 
 function App() {
   return (
@@ -33,7 +34,9 @@ function App() {
             path={getPath.home()}
             element={
               <AuthPrivateProvider>
-                <Tasks />
+                <AppLayout>
+                  <Tasks />
+                </AppLayout>
               </AuthPrivateProvider>
             }
           />
