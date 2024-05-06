@@ -1,13 +1,12 @@
 import { jwtDecode } from 'jwt-decode';
 import { useEffect, useState } from 'react';
 import { Payload } from '../types';
+import { LOCAL_STORAGE_TOKEN_KEY } from '@/constants';
 
 type AuthInfo = {
   checked: boolean;
   isAuthenticated: boolean;
 };
-
-const STORAGE_TOKEN_NAME = 'token';
 
 const checkTokenValidity = (token: string | null): boolean => {
   if (!token) return false;
@@ -26,7 +25,7 @@ export const useAuth = (): AuthInfo => {
   });
 
   useEffect(() => {
-    const token = localStorage.getItem(STORAGE_TOKEN_NAME);
+    const token = localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY);
     const isAuthenticated = checkTokenValidity(token);
 
     setAuthInfo({
@@ -35,7 +34,7 @@ export const useAuth = (): AuthInfo => {
     });
 
     if (!isAuthenticated) {
-      localStorage.removeItem(STORAGE_TOKEN_NAME);
+      localStorage.removeItem(LOCAL_STORAGE_TOKEN_KEY);
     }
   }, []);
 
