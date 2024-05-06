@@ -4,3 +4,15 @@ export type Payload = {
   iat: number;
   exp: number;
 };
+
+export type SignInResponse = {
+  signIn: {
+    accessToken: string;
+  };
+};
+
+export type User = {
+  id: number;
+  name: string;
+  email: string;
+};
